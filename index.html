@@ -372,6 +372,18 @@ footer{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}
   .lr-pie{padding-right:72px}
   .wa-float.oculto{opacity:0;pointer-events:none;transform:translateY(12px)}
 }
+
+/* Portada: el taxi entra en la primera pantalla de la PC (la portada ocupa el alto de la ventana) */
+@media (min-width:961px){
+  .hero-bg{display:flex;flex-direction:column;min-height:calc(100svh - var(--hdr,78px))}
+  .hero{padding-block:clamp(28px,7vh,120px) 210px;width:100%;align-self:center}
+}
+@media (min-width:961px) and (max-height:820px){
+  h1{font-size:clamp(2.6rem,8vh,4.4rem)}
+  .hero > div{gap:14px}
+  .hero-bg .sub{font-size:1.2rem}
+  .hero{padding-bottom:170px}
+}
 </style>
 
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -1063,4 +1075,5 @@ function flujoAyudaLanding(H) {
 })();
 </script>
 
+<script>(function(){var h=document.querySelector('header.top');if(!h)return;function f(){document.documentElement.style.setProperty('--hdr',h.offsetHeight+'px');}f();addEventListener('resize',f);addEventListener('load',f);if(window.ResizeObserver)new ResizeObserver(f).observe(h);})();</script>
 </body></html>
