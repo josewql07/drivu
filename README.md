@@ -5,7 +5,7 @@ Página web de **Drivu**, una app de taxi para Lima que se adapta sola a quien l
 Proyecto académico del curso de Interacción Humano Computador.
 
 - Sitio: https://josewql07.github.io/drivu/
-- Prototipo: https://claude.ai/artifact/MpJ3Tn1Fr54TbG2AzQWLHt
+- Prototipo: https://josewql07.github.io/drivu/app/ (también en https://claude.ai/artifact/MpJ3Tn1Fr54TbG2AzQWLHt)
 
 ## Contenido
 
@@ -14,6 +14,7 @@ Proyecto académico del curso de Interacción Humano Computador.
 | `index.html` | Landing con el asistente de ayuda |
 | `foro.html` | Foro de usuarios |
 | `libro-de-reclamaciones.html` | Libro de Reclamaciones virtual (modo demostración) |
+| `app/index.html` | Prototipo de la app (todo en un archivo; cuentas, viajes y conductores simulados en el navegador) |
 | `media/` | Videos del tutorial y sus portadas |
 | `icono/` | Icono de Drivu para la pestaña del navegador |
 
