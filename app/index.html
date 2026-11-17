@@ -1190,6 +1190,36 @@ h1,h2,.q,.greet,.dest-n{font-weight:700;letter-spacing:-.02em}
 .help-bot .ic{flex:none;width:28px;height:28px}
 .help-bot b{display:block;font-size:1.05em}.help-bot small{display:block;opacity:.9;margin-top:2px}
 .help-bot:focus-visible{outline:3px solid var(--brand-line);outline-offset:3px}
+
+/* @@APERTURA-TAXI@@ Apertura: el taxi llega al punto de recojo y se dibuja el volante */
+.apertura{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#123C85;color:#FFFFFF;overflow:hidden;cursor:pointer;transition:opacity .32s cubic-bezier(.55,0,1,.45),transform .32s cubic-bezier(.55,0,1,.45)}
+[data-theme="dark"] .apertura{background:#101B2D}
+.apertura.fuera{opacity:0;transform:scale(1.04);pointer-events:none}
+.apertura .ap-volante{width:104px;height:104px;overflow:visible}
+.apertura .ap-volante .tr{fill:none;stroke:#FFFFFF;stroke-width:4.4;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160;animation:apTrazo .75s .2s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-volante .tr.b{animation-delay:.38s}
+.apertura .ap-volante .tr.c{stroke:#A3B6DE;stroke-width:5;animation-delay:.55s}
+.apertura .ap-volante g{transform-origin:50px 50px;animation:apGiro 1s .2s cubic-bezier(.22,1,.36,1) both}
+.apertura .ap-nombre{margin:0;font-weight:700;font-size:56px;line-height:1;letter-spacing:-.02em;opacity:0;animation:apSube .45s .8s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-nombre span{color:#A3B6DE}
+.apertura .ap-ritmo{margin:0;padding:6px 16px;border:2px solid rgba(163,182,222,.7);border-radius:999px;font-weight:600;font-size:17px;opacity:0;animation:apSube .45s 1s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-pista{position:absolute;left:0;right:0;bottom:15%;height:150px}
+.apertura .ap-pista .ruta{position:absolute;left:0;right:0;bottom:24px;height:4px;background:repeating-linear-gradient(90deg,rgba(231,237,247,.55) 0 26px,transparent 26px 48px);opacity:0;animation:apAparece .3s forwards}
+.apertura .ap-pin{position:absolute;left:calc(50% + 66px);bottom:30px;width:30px;height:40px;transform-origin:50% 100%;opacity:0;animation:apPin .35s .85s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:34px;height:12px;margin-left:-17px;border:2px solid #A3B6DE;border-radius:50%;opacity:0;animation:apOnda .9s 1.15s ease-out forwards}
+.apertura .ap-carro{position:absolute;left:calc(50% - 74px);bottom:20px;width:132px;height:auto;transform:translateX(-340px);animation:apLlega .9s .05s cubic-bezier(.22,1,.36,1) forwards}
+@keyframes apTrazo{to{stroke-dashoffset:0}}
+@keyframes apGiro{from{transform:rotate(-70deg)}to{transform:rotate(0)}}
+@keyframes apSube{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes apAparece{to{opacity:1}}
+@keyframes apLlega{to{transform:translateX(0)}}
+@keyframes apPin{from{opacity:0;transform:translateY(-18px) scale(.6)}to{opacity:1;transform:none}}
+@keyframes apOnda{0%{opacity:.9;transform:scale(.5)}100%{opacity:0;transform:scale(1.8)}}
+/* La primera pantalla entra por partes, de arriba abajo */
+#app.ap-entra #main > *,#app.ap-entra .foot > *{animation:apSube .45s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--ap-i,0) * 70ms)}
+#app.ap-entra .hero-mark{animation:apMarca .5s cubic-bezier(.22,1,.36,1) both}
+@keyframes apMarca{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.apertura{display:none}#app.ap-entra #main > *,#app.ap-entra .foot > *,#app.ap-entra .hero-mark{animation:none}}
 </style>
 <div class="stage">
   <div class="device" id="device">
@@ -1198,6 +1228,62 @@ h1,h2,.q,.greet,.dest-n{font-weight:700;letter-spacing:-.02em}
     <div id="overlay"></div>
     <div id="toast" role="status" aria-live="polite"></div>
     <div id="notif" role="status" aria-live="polite"></div>
+    <div class="apertura" id="apertura" aria-hidden="true" title="Toca para saltar">
+      <svg class="ap-volante" viewBox="0 0 100 100"><g><circle class="tr" cx="50" cy="50" r="23"/><circle class="tr b" cx="50" cy="50" r="5.2" style="stroke-width:3.6"/><path class="tr b" d="M45.6 47.4L31 39M54.4 47.4L69 39"/></g><path class="tr c" d="M50 62V69"/></svg>
+      <p class="ap-nombre">Driv<span>u</span></p>
+      <p class="ap-ritmo">a tu ritmo</p>
+      <div class="ap-pista">
+        <div class="ruta"></div>
+        <svg class="ap-pin" viewBox="0 0 30 40"><path d="M15 1C7.3 1 1 7.1 1 14.7 1 25 15 39 15 39s14-14 14-24.3C29 7.1 22.7 1 15 1Z" fill="#A3B6DE"/><circle cx="15" cy="14.5" r="5.5" fill="#123C85"/></svg>
+        <svg class="ap-carro" viewBox="0 0 264 114"><g transform="translate(0 2)">
+          <ellipse cx="130" cy="104" rx="128" ry="7" fill="#000" opacity=".25"/>
+          <path d="M14 60 C14 48 22 41 34 39 L52 16 C56 10 62 8 70 8 H158 C166 8 172 12 176 18 L194 40 C222 42 246 48 250 60 L252 86 C252 92 248 96 242 96 H18 C12 96 8 92 8 86 Z" fill="#E7EDF7"/>
+          <path d="M58 13 C62 7 66 5 72 5 H156 C162 5 166 7 170 13 Z" fill="#FFFFFF"/>
+          <path d="M57 22 L63 17 C64 16 65 16 67 16 H104 C106 16 108 18 108 20 V40 C108 42 106 43 104 43 H51 C48 43 47 41 48 39 Z" fill="#5E79AF"/>
+          <path d="M116 19 C116 17 117 16 119 16 H158 C160 16 162 17 163 19 L176 39 C177 41 176 43 174 43 H118 C117 43 116 42 116 40 Z" fill="#5E79AF"/>
+          <rect x="110" y="13" width="72" height="73" rx="7" fill="none" stroke="#A3B6DE" stroke-width="2"/>
+          <path d="M38 92 A26 26 0 0 1 90 92 Z" fill="#A3B6DE"/><path d="M176 92 A26 26 0 0 1 228 92 Z" fill="#A3B6DE"/>
+          <rect x="3" y="57" width="8" height="11" rx="2" fill="#B3262E"/><ellipse cx="252" cy="62" rx="4.5" ry="9" fill="#F2D84B"/>
+          <circle cx="64" cy="88" r="19" fill="#080F1D"/><circle cx="64" cy="88" r="10" fill="#A3B6DE"/>
+          <circle cx="202" cy="88" r="19" fill="#080F1D"/><circle cx="202" cy="88" r="10" fill="#A3B6DE"/>
+        </g></svg>
+      </div>
+    </div>
+    <script>
+    /* @@APERTURA-TAXI@@ Se oculta sola (~2,2 s), con un toque o una tecla; luego la primera pantalla entra por partes */
+    (function () {
+      var ap = document.getElementById('apertura'); if (!ap) return;
+      var reducir = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var listo = false;
+      function entrar() {
+        var app = document.getElementById('app'); if (!app || reducir) return;
+        var hecho = false;
+        function aplicar() {
+          if (hecho || !app.querySelector('#main')) return false;
+          hecho = true;
+          var piezas = [].slice.call(app.querySelectorAll('#main > *, .foot > *'), 0, 9);
+          piezas.forEach(function (el, i) { el.style.setProperty('--ap-i', i); });
+          app.classList.add('ap-entra');
+          setTimeout(function () { app.classList.remove('ap-entra'); }, 1400);
+          return true;
+        }
+        if (aplicar()) return;
+        var mo = new MutationObserver(function () { if (aplicar()) mo.disconnect(); });
+        mo.observe(app, { childList: true, subtree: true });
+        setTimeout(function () { mo.disconnect(); }, 3000);
+      }
+      function cerrar() {
+        if (listo) return; listo = true;
+        ap.classList.add('fuera');
+        setTimeout(function () { if (ap.parentNode) ap.parentNode.removeChild(ap); }, 360);
+        entrar();
+      }
+      if (reducir) { ap.parentNode.removeChild(ap); return; }
+      ap.addEventListener('click', cerrar);
+      document.addEventListener('keydown', function k() { document.removeEventListener('keydown', k); cerrar(); });
+      setTimeout(cerrar, 2200);
+    })();
+    </script>
   </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
