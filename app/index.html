@@ -1192,22 +1192,22 @@ h1,h2,.q,.greet,.dest-n{font-weight:700;letter-spacing:-.02em}
 .help-bot:focus-visible{outline:3px solid var(--brand-line);outline-offset:3px}
 
 /* @@APERTURA-TAXI@@ Apertura: el taxi llega al punto de recojo y se dibuja el volante */
-.apertura{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#123C85;color:#FFFFFF;overflow:hidden;cursor:pointer;transition:opacity .32s cubic-bezier(.55,0,1,.45),transform .32s cubic-bezier(.55,0,1,.45)}
+.apertura{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#123C85;color:#FFFFFF;overflow:hidden;cursor:pointer;transition:opacity .26s cubic-bezier(.55,0,1,.45),transform .26s cubic-bezier(.55,0,1,.45)}
 [data-theme="dark"] .apertura{background:#101B2D}
 .apertura.fuera{opacity:0;transform:scale(1.04);pointer-events:none}
 .apertura .ap-volante{width:104px;height:104px;overflow:visible}
-.apertura .ap-volante .tr{fill:none;stroke:#FFFFFF;stroke-width:4.4;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160;animation:apTrazo .75s .2s cubic-bezier(.22,1,.36,1) forwards}
-.apertura .ap-volante .tr.b{animation-delay:.38s}
-.apertura .ap-volante .tr.c{stroke:#A3B6DE;stroke-width:5;animation-delay:.55s}
-.apertura .ap-volante g{transform-origin:50px 50px;animation:apGiro 1s .2s cubic-bezier(.22,1,.36,1) both}
-.apertura .ap-nombre{margin:0;font-weight:700;font-size:56px;line-height:1;letter-spacing:-.02em;opacity:0;animation:apSube .45s .8s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-volante .tr{fill:none;stroke:#FFFFFF;stroke-width:4.4;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160;animation:apTrazo .5s .1s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-volante .tr.b{animation-delay:.22s}
+.apertura .ap-volante .tr.c{stroke:#A3B6DE;stroke-width:5;animation-delay:.34s}
+.apertura .ap-volante g{transform-origin:50px 50px;animation:apGiro .65s .1s cubic-bezier(.22,1,.36,1) both}
+.apertura .ap-nombre{margin:0;font-weight:700;font-size:56px;line-height:1;letter-spacing:-.02em;opacity:0;animation:apSube .35s .5s cubic-bezier(.22,1,.36,1) forwards}
 .apertura .ap-nombre span{color:#A3B6DE}
-.apertura .ap-ritmo{margin:0;padding:6px 16px;border:2px solid rgba(163,182,222,.7);border-radius:999px;font-weight:600;font-size:17px;opacity:0;animation:apSube .45s 1s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-ritmo{margin:0;padding:6px 16px;border:2px solid rgba(163,182,222,.7);border-radius:999px;font-weight:600;font-size:17px;opacity:0;animation:apSube .35s .64s cubic-bezier(.22,1,.36,1) forwards}
 .apertura .ap-pista{position:absolute;left:0;right:0;bottom:15%;height:150px}
-.apertura .ap-pista .ruta{position:absolute;left:0;right:0;bottom:24px;height:4px;background:repeating-linear-gradient(90deg,rgba(231,237,247,.55) 0 26px,transparent 26px 48px);opacity:0;animation:apAparece .3s forwards}
-.apertura .ap-pin{position:absolute;left:calc(50% + 66px);bottom:30px;width:30px;height:40px;transform-origin:50% 100%;opacity:0;animation:apPin .35s .85s cubic-bezier(.22,1,.36,1) forwards}
-.apertura .ap-pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:34px;height:12px;margin-left:-17px;border:2px solid #A3B6DE;border-radius:50%;opacity:0;animation:apOnda .9s 1.15s ease-out forwards}
-.apertura .ap-carro{position:absolute;left:calc(50% - 74px);bottom:20px;width:132px;height:auto;transform:translateX(-340px);animation:apLlega .9s .05s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-pista .ruta{position:absolute;left:0;right:0;bottom:24px;height:4px;background:repeating-linear-gradient(90deg,rgba(231,237,247,.55) 0 26px,transparent 26px 48px);opacity:0;animation:apAparece .2s forwards}
+.apertura .ap-pin{position:absolute;left:calc(50% + 66px);bottom:30px;width:30px;height:40px;transform-origin:50% 100%;opacity:0;animation:apPin .28s .55s cubic-bezier(.22,1,.36,1) forwards}
+.apertura .ap-pin::after{content:"";position:absolute;left:50%;bottom:-6px;width:34px;height:12px;margin-left:-17px;border:2px solid #A3B6DE;border-radius:50%;opacity:0;animation:apOnda .6s .78s ease-out forwards}
+.apertura .ap-carro{position:absolute;left:calc(50% - 74px);bottom:20px;width:132px;height:auto;transform:translateX(-340px);animation:apLlega .6s .02s cubic-bezier(.22,1,.36,1) forwards}
 @keyframes apTrazo{to{stroke-dashoffset:0}}
 @keyframes apGiro{from{transform:rotate(-70deg)}to{transform:rotate(0)}}
 @keyframes apSube{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -1250,7 +1250,7 @@ h1,h2,.q,.greet,.dest-n{font-weight:700;letter-spacing:-.02em}
       </div>
     </div>
     <script>
-    /* @@APERTURA-TAXI@@ Se oculta sola (~2,2 s), con un toque o una tecla; luego la primera pantalla entra por partes */
+    /* @@APERTURA-TAXI@@ Se oculta sola (~1,5 s), con un toque o una tecla; luego la primera pantalla entra por partes */
     (function () {
       var ap = document.getElementById('apertura'); if (!ap) return;
       var reducir = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1275,13 +1275,13 @@ h1,h2,.q,.greet,.dest-n{font-weight:700;letter-spacing:-.02em}
       function cerrar() {
         if (listo) return; listo = true;
         ap.classList.add('fuera');
-        setTimeout(function () { if (ap.parentNode) ap.parentNode.removeChild(ap); }, 360);
+        setTimeout(function () { if (ap.parentNode) ap.parentNode.removeChild(ap); }, 300);
         entrar();
       }
       if (reducir) { ap.parentNode.removeChild(ap); return; }
       ap.addEventListener('click', cerrar);
       document.addEventListener('keydown', function k() { document.removeEventListener('keydown', k); cerrar(); });
-      setTimeout(cerrar, 2200);
+      setTimeout(cerrar, 1500);
     })();
     </script>
   </div>
