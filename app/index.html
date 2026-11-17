@@ -2522,7 +2522,7 @@ function afterSignup() {
 
 function codeIntro(p) {
   var how = p.channel === 'sms' ? 'por SMS al <strong>' + esc(p.to) + '</strong>' : p.channel === 'email' ? 'a tu correo <strong>' + esc(p.to) + '</strong>. Si no lo ves, revisa la carpeta de spam' : 'al registro del servidor (modo de prueba)';
-  return '<p class="lead">Te enviamos un código de 6 dígitos ' + how + '.</p>' + (p.devCode ? '<div class="devcode">Prototipo: el código llega como notificación arriba (tócala para completarlo). Si no la viste, es ' + esc(p.devCode) + '.</div>' : '');
+  return '<p class="lead">Te enviamos un código de 6 dígitos ' + how + '.</p>' + '';
 }
 function codeMount(p, onSubmit) {
   var i = $('#code'), b = $('#cbtn'), left = 45;
