@@ -4,7 +4,7 @@ Página web de **Drivu**, una app de taxi para Lima que se adapta sola a quien l
 
 Proyecto académico del curso de Interacción Humano Computador.
 
-- Sitio: https://wentoqleao.github.io/drivu/
+- Sitio: https://josewql07.github.io/drivu/
 - Prototipo: https://claude.ai/artifact/MpJ3Tn1Fr54TbG2AzQWLHt
 
 ## Contenido
