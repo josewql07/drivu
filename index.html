@@ -344,9 +344,6 @@ section{padding-block:clamp(48px,8vw,96px)}
   tbody tr td:last-child{border-bottom:0}
   tbody td::before{content:attr(data-label);display:block;font-size:.82rem;font-weight:700;color:var(--muted);margin-bottom:2px}
   td.us::before{content:attr(data-label);color:var(--accent)}
-  .cta-bar{display:block;position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--bg);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
-  .cta-bar .btn{width:100%}
-  body{padding-bottom:calc(80px + env(safe-area-inset-bottom,0px))}
 }
 @media (forced-colors:active){.btn,.theme,.menu-btn{border:2px solid ButtonText}}
 
@@ -370,7 +367,6 @@ section{padding-block:clamp(48px,8vw,96px)}
 footer{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}
 @media (max-width:600px){
   .wa-float{width:56px;height:56px;right:max(16px,env(safe-area-inset-right,0px))}
-  .wa-float.sobre-cta{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
   .lr-pie{padding-right:72px}
   .wa-float.oculto{opacity:0;pointer-events:none;transform:translateY(12px)}
 }
@@ -709,7 +705,6 @@ html.ap-abierta{overflow:hidden}
     <p class="prof">Asesor: Dr. Rodrigo Edgar Castilla Levano · Lima, Perú, 2026</p>
   </div>
 </section>
-<div class="cta-bar"><a class="btn primary" href="app/" target="_blank" rel="noopener">Probar el prototipo <span class="sr-only">(se abre en una pestaña nueva)</span><span class="ext" aria-hidden="true">↗</span></a></div>
 </main>
 
 <footer>
@@ -788,7 +783,7 @@ html.ap-abierta{overflow:hidden}
 .ay-panel .dab-ctrl{border-top:1px solid var(--line);max-height:48%;overflow-y:auto;flex:none}
 .ay-aviso{margin:0;padding:6px 14px 0;font-size:.78rem;color:var(--muted);text-align:center}
 @media (max-width:600px){
-  .ay-fab{width:56px;height:56px;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(152px + env(safe-area-inset-bottom,0px))}
+  .ay-fab{width:56px;height:56px;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(96px + env(safe-area-inset-bottom,0px))}
   .ay-fab .ay-burb{display:none}
   .ay-panel{inset:0;width:auto;height:auto;border-radius:0;border:0;padding-bottom:env(safe-area-inset-bottom,0px)}
   .ay-cab{padding-top:calc(14px + env(safe-area-inset-top,0px))}
